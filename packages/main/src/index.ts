@@ -1036,10 +1036,11 @@ ipcMain.handle("download-mod", async (event, operation) => {
     let lastError: Error | null = null;
     
     // Determine extraction order based on archive type
-    const preferSevenZip = archiveType === '7z';
-    const preferWinRAR = archiveType === 'rar';
+    // Haz que use 7-Zip para todo
+    const preferSevenZip = true;
+    const preferWinRAR = false;
     
-    console.log(`Extraction strategy: ${preferSevenZip ? '7-Zip preferred' : preferWinRAR ? 'WinRAR preferred' : 'PowerShell preferred'}`);
+    console.log(`Extraction strategy: 7-Zip preferred`);
     
     // Method 1: Try PowerShell Expand-Archive (for .zip files, try first)
     if (!preferSevenZip && !preferWinRAR) {
